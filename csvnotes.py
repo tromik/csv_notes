@@ -1,39 +1,55 @@
 import csv, datetime, uuid, os
 
-def file_exists(file):
-    # Function file_exists() confirms that file exists or not
-    return os.path.isfile('csvnotes.csv')
+temp_file = 'csvnotes.csv'
 
+# Define headers, current datetime
 headers=['guid', 'datetime', 'note']
 current_time = str(datetime.datetime.now().time().isoformat())
 
-def genguid():
-    return uuid.uuid1()
+def file_exists(file_name):
+    # Function file_exists() confirms that file exists or not
+    return os.path.isfile('csvnotes.csv') # Returns TRUE or FALSE
+
+def create_csv(file_name):
+    # Function create_csv() creates the file
+    file = open(file_name, 'rw')
+    file.close()
+
+def genguid()
+    # Generate GUID
+    return uuid.uuid1() # Returns GUID
 
 def write_csv():
+    # Function write_csv
 
-    if file_exists:
-        print "File exists!"
-    else:
-        print "File missing"
+    #Check if file exists, if not create it
+    if not file_exists(temp_file):
+        create_csv(temp_file)
 
+    # Open the CSV
     with open('csvnotes.csv', 'a') as csvfile:
         csvwriter = csv.DictWriter(csvfile, delimiter=',',
                                 fieldnames = headers)
-        text = raw_input("Enter note: ")
 
-        csvwriter.writeheader()
-        csvwriter.writerow({'guid': genguid(), 'datetime': current_time, 'note': text})
+        # If file is empty write the headers
+        if not os.path.getsize(temp_file) > 0:
+            csvwriter.writeheader()
 
+        # Input note text
+        note_text = raw_input("Enter note: ")
+
+        # Write note to CSV file
+        csvwriter.writerow({'guid': genguid(), 'datetime': current_time, 'note': note_text})
+
+        # Prompt user to enter more notes
         ans = raw_input("Enter another note? ")
-
         while ans.lower() != 'n':
-            text = raw_input("Enter note: ")
-            csvwriter.writerow({'guid': genguid(), 'datetime': current_time, 'note': text})
+            note_text = raw_input("Enter note: ")
+            csvwriter.writerow({'guid': genguid(), 'datetime': current_time, 'note': note_text})
             ans = raw_input("Enter another note?")
 
 def read_csv():
-    with open('csvnotes.csv') as csvfile:
+    with open(temp_file) as csvfile:
         reader = csv.DictReader(csvfile)
         reader.keys()
         for row in reader:
