@@ -12,7 +12,7 @@ def file_exists(file_name):
 
 def create_csv(file_name):
     # Function create_csv() creates the file
-    file = open(file_name, 'rw')
+    file = open(file_name, 'w')
     file.close()
 
 def genguid():
@@ -56,4 +56,4 @@ def read_csv():
             print(row['guid'], row['datetime'], row['note'])
 
 write_csv()
-read_csv()
+#read_csv()
