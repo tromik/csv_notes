@@ -15,7 +15,7 @@ def create_csv(file_name):
     file = open(file_name, 'rw')
     file.close()
 
-def genguid()
+def genguid():
     # Generate GUID
     return uuid.uuid1() # Returns GUID
 
