@@ -53,9 +53,9 @@ def write_csv():
 def read_csv():
     with open(temp_file) as csvfile:
         reader = csv.DictReader(csvfile)
-        reader.keys()
+        print reader
         for row in reader:
             print(row['guid'], row['datetime'], row['note'])
 
 write_csv()
-#read_csv()
+read_csv()

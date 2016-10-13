@@ -4,3 +4,4 @@
 /Include/*
 *.csv
 /tcl/*
+pip-selfcheck.json
