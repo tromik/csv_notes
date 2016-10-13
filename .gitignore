@@ -2,4 +2,5 @@
 /Scripts/*
 /Lib/*
 /Include/*
-
+*.csv
+/tcl/*
