@@ -1,3 +1,5 @@
 *.pyc
-./Scripts
-./Lib
+Scripts\*
+Lib\*
+Include\*
+
